@@ -1,4 +1,7 @@
 <?php
+	// Include mysqli passwords file
+	include('pass.php');
+	
 	// Get input data
 	$inData = getRequestInfo();
 
