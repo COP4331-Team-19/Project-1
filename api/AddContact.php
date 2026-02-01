@@ -37,7 +37,7 @@
 	}
 	else
 	{
-		// Send insert query with sanitized, validated, and formatted inputs
+		// Send insert query with validated and formatted inputs
 		$stmt = $conn->prepare("INSERT IGNORE into Contacts (FirstName,LastName,Phone,Email,UserID) VALUES(?,?,?,?,?)");
 		$stmt->bind_param("sssss", $firstName, $lastName, $phoneNum, $email, $userId);
 		$stmt->execute();
