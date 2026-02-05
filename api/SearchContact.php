@@ -64,12 +64,12 @@
 				$firstName = "%$firstName%";
 				$lastName = "%$lastName%";
 
-				// Prepare insert query, email here to ensure partial emails are still searched
-				$stmt = $conn->prepare("select FirstName as firstName,LastName as lastName,Phone as phoneNum,Email as email from Contacts where UserID=? and (FirstName like ? or LastName like ? or Email like ?)");
+				// Prepare insert query, email and phoneNum here to ensure partial emails and phone numbers are still searched
+				$stmt = $conn->prepare("select FirstName as firstName,LastName as lastName,Phone as phoneNum,Email as email from Contacts where UserID=? and (FirstName like ? or LastName like ? or Email like ? or Phone like ?)");
 			}
 			
 			// Bind to query
-			$stmt->bind_param("ssss", $inData["userId"], $firstName, $lastName, $searchTerm);
+			$stmt->bind_param("sssss", $inData["userId"], $firstName, $lastName, $searchTerm, $searchTerm);
 		}
 		else if( $searchFlag == 1 )
 		{
