@@ -31,9 +31,23 @@
 		else if( iconv_strlen($searchPhone) == 10 )
 		{
 			$searchFlag = 2; // Flagged as phone number
-			// Reformat phone number to match format in database
-			$searchPhone = str_split($searchPhone, 3);
-			$searchPhone = "%$searchPhone[0]-$searchPhone[1]-$searchPhone[2]$searchPhone[3]%";
+		}
+		// Reformat phone number to match format in database
+		$searchPhone = str_split($searchPhone, 3);
+		switch( count($searchPhone) )
+		{
+			case 0:
+			case 1:
+				$searchPhone = "%$searchPhone[0]%";
+				break;
+			
+			case 2:
+				$searchPhone = "%$searchPhone[0]-$searchPhone[1]%";
+				break;
+
+			default:
+				$searchPhone = "%$searchPhone[0]-$searchPhone[1]-$searchPhone[2]$searchPhone[3]%";
+				break;
 		}
 		
 		if( $searchFlag == 0 )
@@ -51,8 +65,8 @@
 				$firstName = "%$firstName%";
 				$lastName = "%$lastName%";
 
-				// Prepare insert query, email here to ensure partial emails are still searched, first AND last name must match
-				$stmt = $conn->prepare("select FirstName as firstName,LastName as lastName,Phone as phoneNum,Email as email from Contacts where UserID=? and ((FirstName like ? and LastName like ?) or Email like ?)");
+				// Prepare insert query, email and phoneNum here to ensure partial emails and phone numbers are still searched, first AND last name must match
+				$stmt = $conn->prepare("select FirstName as firstName,LastName as lastName,Phone as phoneNum,Email as email from Contacts where UserID=? and ((FirstName like ? and LastName like ?) or Email like ? or Phone like ?)");
 			}
 			else
 			{
@@ -69,7 +83,7 @@
 			}
 			
 			// Bind to query
-			$stmt->bind_param("sssss", $inData["userId"], $firstName, $lastName, $searchTerm, $searchTerm);
+			$stmt->bind_param("sssss", $inData["userId"], $firstName, $lastName, $searchTerm, $searchPhone);
 		}
 		else if( $searchFlag == 1 )
 		{
@@ -84,8 +98,7 @@
 			// Prepare insert query
 			$stmt = $conn->prepare("select FirstName as firstName,LastName as lastName,Phone as phoneNum,Email as email from Contacts where UserID=? and Phone like ?");
 			// Format search term to fit SQL LIKE formatting (contains) and bind to query
-			$searchTerm = "%" . $searchPhone . "%";
-			$stmt->bind_param("ss", $inData["userId"], $searchTerm);
+			$stmt->bind_param("ss", $inData["userId"], $searchPhone);
 		}
 		
 		// Execute SQL command
