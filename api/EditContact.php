@@ -61,6 +61,8 @@
 		// Close connection
 		$stmt->close();
 		$conn->close();
+
+		returnWithError("");
 	}
 
 	// Decode JSON for splitting
