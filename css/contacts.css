@@ -1,277 +1,234 @@
-/* body formatting */
+/* ===================================
+   BODY STYLES
+   =================================== */
 body {
     background-color: #F3B02E;
-    background-image: url('../images/background2.png');
+    background-image: url('../images/Background.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    overflow: hidden;
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-/* content from leinecker */
-.content {
-    padding: 1px 16px;
-    height: 1000px;
-    margin-top: 25px;
-    margin-left: 270px;
-    margin-right: 10px;
+
+/* ===================================
+   TOP HEADER (LOGO & SEARCH)
+   =================================== */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(255, 203, 89, 0.9);
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.loggedInDiv {
-    font-family: 'Montserrat';
-    font-weight: bolder;
-    font-size: 2vw;
-    align-self: center;
+/* Logo link and image */
+.logo-link {
+    display: flex;
+    align-items: center;
 }
 
-.accessUIDiv {
-    margin: 10px;
-    padding: 10px 10px;
-    text-align: center;
-    align-self: center;
-}
-
-.column {
-    display: inline-block;
-    padding: 10px 10px;
-    vertical-align: middle;
-}
-
-.column button {
-    position: relative;
-    background: #ffffff;
+#logo {
+    height: 60px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
     border-radius: 50%;
-    padding: 15px;
-    margin: 10px;
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
-    display: flex;
-    border: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.tables {
-    align-self: center;
+#logo:hover {
+    transform: scale(1.05);
 }
 
-.addContacts {
-    align-self: center;
-}
-
-/* add contacts table formatting */
-#addMe {
-    font-family: 'Montserrat';
-    display: none;
-    border-radius: 17px;
-    position: relative;
-    background: rgba(234, 207, 155, 0.9);
-    max-width: 350px;
-    margin: 0 auto 50px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-#addMe input {
-    border-radius: 17px;
-    font-family: 'Montserrat';
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 10px;
-    box-sizing: border-box;
+/* Search bar in header */
+.search-bar {
+    padding: 10px 15px;
+    border: 2px solid #66420b;
+    border-radius: 8px;
+    width: 250px;
     font-size: 14px;
-}
-
-
-#addMe>input:valid {
-    border: 2px solid #009345;
-    ;
-}
-
-#addMe>input:invalid {
-    border: 2px solid red;
-}
-
-#addMe>input:invalid:required {
-    background-image: white;
-}
-
-#addMe button {
-    border-radius: 17px;
-    font-family: 'Montserrat';
-    outline: 0;
-    background: #78500b;
-    color: rgba(234, 207, 155, 0.9);
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-#contacts td input {
-    border-radius: 17px;
-    font-family: 'Montserrat';
-    outline: 0;
-    background: #fbde99;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-
-/* button formatting */
-.btn {
-    color: #007D2F;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: bolder;
-    font-size: 2.3vw;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.3em 1.2em;
-    margin: 0.6em 0.3em 0.3em 0;
-    float: right;
-}
-
-.btn:hover {
-    color: #897261;
-}
-
-/* search bar formatting */
-.search-container {
-    background: #fff;
-    font-family: 'Montserrat';
-    height: 30px;
-    width: 400px;
-    border-radius: 30px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.8s;
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
-        -4px -4px 6px 0 rgba(116, 125, 136, .2),
-        inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-        inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-}
-
-.search-container:hover>.search-input {
-    width: 400px;
-}
-
-.search-container .search-input {
-    background: transparent;
-    border: none;
     outline: none;
-    width: 0px;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 16px;
-    transition: 0.8s;
+    font-family: 'Montserrat', sans-serif;
+    background: white;
 }
 
-.search-container .search-btn .fas {
-    color: rgba(155, 188, 115, 0.9);
-}
-
-.search-container:hover {
-    animation: linear 3;
-}
-
-span {
-    color: rgb(164, 0, 0);
-    font-family: 'Montserrat';
-}
-
-p {
-    color: rgb(164, 0, 0);
-    font-family: 'Montserrat';
-}
-
-/* table formatting */
-#contactsTable {
-    display: block;
-    height: 500px;
+.search-bar:focus {
+    border-color: #897261;
 }
 
 
-table {
-    width:100%;
+/* ===================================
+   MAIN CONTENT LAYOUT
+   =================================== */
+.overlay {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 16px 40px 16px; /* Extra top padding for fixed header */
+}
+
+/* Main contacts card */
+.card {
+    width: min(900px, 96vw);
+    max-height: 80vh; /* Maximum height */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    padding: 30px;
+    padding-bottom: 100px; /* Extra padding at bottom for add button */
+    box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Card header */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-shrink: 0; /* Prevents header from shrinking */
+}
+
+.header h1 {
+    margin: 0;
+    color: #66420b;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* ===================================
+   CONTACTS TABLE
+   =================================== */
+.contacts-container {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 203, 89, 0.9);
+    border-radius: 8px;
+    background: white;
+    min-height: 0; /* Allows container to shrink */
+    margin-bottom: 20px; /* Space between table and add button */
+}
+
+.contacts-table {
+    width: 100%;
     table-layout: fixed;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-collapse: collapse;
 }
 
-.tbl-content {
-    height: 300px;
-    overflow-x: auto;
-    margin-top: 0px;
-    border: 1px solid rgba(155, 188, 115, 0.9);
+.contacts-table thead {
+    background: rgba(255, 203, 89, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-#contacts td,
-#contacts th {
-    border: 1px solid rgba(155, 188, 115, 0.9);
-}
-
-#contacts tr:hover {
-    background-color: #478fbb;
-}
-
-#contacts th {
+.contacts-table th {
     padding: 20px 15px;
     text-align: left;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color: #007D2F;
-    background-color: rgba(155, 188, 115, 0.9);
+    font-size: 16px;
+    color: #66420b;
     text-transform: uppercase;
 }
 
-#contacts td {
+.contacts-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.contacts-table tbody tr:hover {
+    transform: scale(1.02);
+    background-color: #478fbb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    position: relative;
+}
+
+.contacts-table td {
     padding: 15px;
     text-align: left;
-    font-family: 'Montserrat';
-    vertical-align: middle;
-    font-weight: 300;
-    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    font-size: 15px;
     color: #66471b;
     background-color: antiquewhite;
+    border-bottom: 1px solid rgba(255, 203, 89, 0.5);
 }
-#contacts td span {
+
+.contacts-table td span {
     display: block;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 100%;
-    color: #66471b;
 }
 
-/* for custom scrollbar for webkit browser*/
+
+/* ===================================
+   DELETE BUTTON
+   =================================== */
+.delete-btn {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover {
+    background: #b71c1c;
+}
+
+
+/* ===================================
+   ADD BUTTON (BOTTOM - OUTSIDE TABLE)
+   =================================== */
+.add-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: #78500b;
+    color: rgba(234, 207, 155, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 300;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevents button from shrinking */
+    z-index: 100; /* Ensures button stays on top */
+}
+
+.add-btn:hover {
+    background: #66420b;
+    transform: scale(1.1);
+}
+
+
+/* ===================================
+   CUSTOM SCROLLBAR
+   =================================== */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -284,132 +241,64 @@ table {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-/*side navigation menu*/
-.sidenav img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    position: relative;
-}
 
-.sidenav {
-    width: 264px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    left: 0px;
-    top: 0px;
-    overflow: auto;
-    /*disables horizontal scroll*/
-    position: fixed;
-    /*scroll bar stays in place when user is scrolling*/
-    background: rgba(155, 188, 115, 0.9);
-}
-
-/*navigation links*/
-.sidenav a {
-    padding: 10px 0px 15px 0px;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 44px;
-    color: #007D2F;
-}
-
-.buttons {
-    padding: 10px 0px 15px 0px;
-    display: block;
-}
-
-/*buttons that are on the sidebar*/
-.sidebuttons {
-    padding: 10px 0px 15px 0px;
-    display: inline-block;
-}
-
-.sidebuttons:hover {
-    color: #897261;
-}
-
-.buttons:hover {
-    color: #897261;
-}
-
-.sidenav a:hover {
-    color: #897261;
-}
-
-.font {
-    text-align: center;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 44px;
-    color: #007D2F;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 80px;
-}
-
-/* make sidebar a topbar for mobile view*/
-@media screen and (max-width: 700px) {
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media screen and (max-width: 768px) {
     body {
-        background-image: url('../images/backgroundmobile2.png');
+        background-image: url('../images/BackgroundMobile.png');
     }
 
-    .sidenav {
-        width: 100%;
-        height: auto;
-        position: relative;
-        overflow: hidden;
-        /*hides scroll bar*/
-        position: sticky;
-
+    .card {
+        max-height: calc(100vh - 140px);
+        padding: 20px;
+        padding-bottom: 90px;
     }
 
-    .sidebuttons {
-        position: relative;
-        font-size: 4vw;
-        top: 5px;
+    #logo {
+        height: 50px;
     }
 
-    .sidenav a {
-        display: inline-block;
+    .search-bar {
+        width: 180px;
+        font-size: 12px;
+    }
+
+    .contacts-table th,
+    .contacts-table td {
         padding: 10px;
-        font-size: 4vw;
-        top: 5px;
-        position: relative;
+        font-size: 14px;
     }
 
-    .sidenav img {
-        width: 12vw;
-        float: left;
+    /* Disable scale effect on mobile for better touch experience */
+    .contacts-table tbody tr:hover {
+        transform: none;
     }
 
-    div.content {
-        margin-left: 0;
-    }
-
-    .buttons {
-        margin-left: 100px;
+    .add-btn {
+        bottom: 20px;
+        left: 20px;
     }
 }
 
-/*displays the bar vertically*/
+@media only screen and (min-width: 769px) {
+    body {
+        background-image: url('../images/Background.png');
+    }
+}
+
 @media screen and (max-width: 400px) {
-    .sidenav a {
-        text-align: center;
-        float: none;
+    .top-header {
+        padding: 0 15px;
     }
 
-    .sidenav img {
-        width: 40%;
+    .search-bar {
+        width: 140px;
+    }
+
+    #logo {
+        height: 40px;
     }
 }
+
