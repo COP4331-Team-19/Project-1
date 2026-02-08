@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pirate Cove - Contact Manager</title>
+
+  <!-- EXTERNAL RESOURCES -->
+  <!-- Stylesheet location: css/index.css -->
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- JavaScript location: js/code.js -->
+  <script type="text/javascript" src="js/code.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <!-- Logo - links to index.html -->
+    <a href="index.html" class="logo-link">
+      <img id="logo" src="images/Icon.png" alt="Pirate Cove Logo">
+    </a>
+    
+    <!-- About Us link - links to teamMembers.html -->
+    <a href="teamMembers.html" class="about-link">About Us</a>
+  </header>
+
+  <div class="bodyContainer">
+    
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+      <!-- PAGE TITLE AS GITHUB LINK -->
+      <h1 class="page-title">
+        <a href="https://github.com/COP4331-Team-19/Project-1" class="title-link" target="_blank" rel="noopener noreferrer">
+          Welcome to Pirate Cove!
+        </a>
+      </h1>
+
+      <!-- CENTER - LOGIN/REGISTER FORMS -->
+      <div class="form-container">
+        
+        <!-- LOGIN FORM -->
+        <div id="loginDiv" class="form-card">
+          <h2>Welcome Aboard</h2>
+          
+          <form onsubmit="event.preventDefault(); doLogin();">
+            <div class="input-group">
+              <label for="loginName">Username</label>
+              <input type="text" id="loginName" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" placeholder="Password" required>
+            </div>
+
+            <span id="loginResult" class="error-message"></span>
+
+            <button type="submit" class="action-btn">Login</button>
+          </form>
+
+          <p class="toggle-text">
+            Don't have an account? 
+            <span class="toggle-link" onclick="toggleForms()">Sign Up</span>
+          </p>
+        </div>
+
+        <!-- REGISTER FORM (hidden by default) -->
+        <div id="registerDiv" class="form-card hidden">
+          <h2>Join the Crew</h2>
+          
+          <form onsubmit="event.preventDefault(); doRegister();">
+            <div class="input-group">
+              <label for="regFirstName">First Name</label>
+              <input type="text" id="regFirstName" placeholder="First Name" required>
+            </div>
+
+            <div class="input-group">
+              <label for="regLastName">Last Name</label>
+              <input type="text" id="regLastName" placeholder="Last Name" required>
+            </div>
+
+            <div class="input-group">
+              <label for="regLoginName">Username</label>
+              <input type="text" id="regLoginName" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+              <label for="regPassword">Password</label>
+              <input type="password" id="regPassword" placeholder="Password" required>
+            </div>
+
+            <span id="registerResult" class="error-message"></span>
+
+            <button type="submit" class="action-btn">Sign Up</button>
+          </form>
+
+          <p class="toggle-text">
+            Already have an account? 
+            <span class="toggle-link" onclick="toggleForms()">Login</span>
+          </p>
+        </div>
+
+      </div>
+      
+    </main>
+    
+  </div>
+
+  <script>
+    // Toggle between Login and Register forms
+    function toggleForms() {
+      const loginDiv = document.getElementById("loginDiv");
+      const registerDiv = document.getElementById("registerDiv");
+
+      if (loginDiv.classList.contains("hidden")) {
+        loginDiv.classList.remove("hidden");
+        registerDiv.classList.add("hidden");
+      } else {
+        loginDiv.classList.add("hidden");
+        registerDiv.classList.remove("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>

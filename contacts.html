@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacts</title>
+  
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="css/contacts.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <!-- Logo - links to index.html (images/Icon.png) -->
+    <a href="index.html" class="logo-link">
+      <img id="logo" src="images/Icon.png" alt="Team logo">
+    </a>
+    
+    <!-- Search bar -->
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search contacts...">
+  </header>
+
+  <div class="overlay">
+    <div class="card">
+
+      <!-- Header with title -->
+      <div class="header">
+        <h1>Contacts</h1>
+      </div>
+
+      <!-- Contacts table -->
+      <div class="contacts-container">
+        <table class="contacts-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="contactsBody">
+            <!-- Placeholder contacts -->
+            <tr>
+              <td><span>John</span></td>
+              <td><span>Doe</span></td>
+              <td><span>john.doe@email.com</span></td>
+              <td><span>(555) 123-4567</span></td>
+              <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><span>Jane</span></td>
+              <td><span>Smith</span></td>
+              <td><span>jane.smith@email.com</span></td>
+              <td><span>(555) 234-5678</span></td>
+              <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><span>Michael</span></td>
+              <td><span>Johnson</span></td>
+              <td><span>m.johnson@email.com</span></td>
+              <td><span>(555) 345-6789</span></td>
+              <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><span>Emily</span></td>
+              <td><span>Davis</span></td>
+              <td><span>emily.davis@email.com</span></td>
+              <td><span>(555) 456-7890</span></td>
+              <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Add button -->
+      <button class="add-btn" onclick="addContact()">+</button>
+
+    </div>
+  </div>
+
+<script>
+
+  // Delete contact function
+  function deleteContact(btn) {
+    if (confirm('Are you sure you want to delete this contact?')) {
+      const row = btn.closest('tr');
+      row.remove();
+    }
+  }
+
+  // Add contact function
+  function addContact() {
+    const firstName = prompt('Enter first name:');
+    if (!firstName) return;
+    
+    const lastName = prompt('Enter last name:');
+    if (!lastName) return;
+    
+    const email = prompt('Enter email:');
+    if (!email) return;
+    
+    const phone = prompt('Enter phone number:');
+    if (!phone) return;
+
+    // Create new row
+    const tbody = document.getElementById('contactsBody');
+    const row = tbody.insertRow();
+    
+    row.innerHTML = `
+      <td><span>${firstName}</span></td>
+      <td><span>${lastName}</span></td>
+      <td><span>${email}</span></td>
+      <td><span>${phone}</span></td>
+      <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+    `;
+  }
+
+  // Search functionality
+  const searchBar = document.getElementById('searchBar');
+  searchBar.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#contactsBody tr');
+    
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+  });
+
+</script>
+
+
+      <!-- COMMENTED OUT: Login-based UI sections -->
+      <!-- Shown when user is NOT logged in -->
+      <!--
+      <div id="loggedOutUI" style="display:none;">
+        <p class="muted">You must be logged in to view contacts.</p>
+        <a class="btn" href="frontend/login.html">Go to Login</a>
+      </div>
+      -->
+
+      <!-- Shown when user IS logged in -->
+      <!--
+      <div id="loggedInUI" style="display:none;">
+        <p class="muted">You are logged in.</p>
+        <button class="btn" id="logoutBtn" style="background:#444;">
+          Logout
+        </button>
+      </div>
+      -->
+
+    </div>
+  </div>
+
+<!-- COMMENTED OUT: All login/logout logic -->
+<!--
+<script>
+
+  // Check if a user is logged in by seeing if userId is stored
+  const userId = localStorage.getItem("userId");
+
+  // COMMENTED OUT: Redirect to index.html if not logged in
+  // If NOT logged in, immediately return to home page
+  // if (!userId) {
+  //   window.location.href = "index.html";
+  // }
+
+  // If we get here, user IS logged in
+  const loggedInUI  = document.getElementById("loggedInUI");
+  loggedInUI.style.display = "";
+
+  // Logout button logic
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("userId");
+      localStorage.removeItem("firstName");
+      localStorage.removeItem("lastName");
+
+      window.location.href = "index.html";
+    });
+  }
+-->
+</script>
+
+
+</body>
+</html>
