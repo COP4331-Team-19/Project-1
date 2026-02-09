@@ -32,6 +32,10 @@
 		{
 			$searchFlag = 2; // Flagged as phone number
 		}
+		else if( iconv_strlen(($searchPhone) != 0 ))
+		{
+			$searchFlag = -1; // Flagged as possible partial phone number
+		}
 		// Reformat phone number to match format in database
 		$searchPhone = str_split($searchPhone, 3);
 		switch( count($searchPhone) )
@@ -50,10 +54,15 @@
 				break;
 		}
 		
-		if( $searchFlag == 0 )
+		if( $searchFlag <= 0 )
 		{
 			// Possibly full name is searched, so split
-			$name = explode(" ", $searchTerm, 2);
+			$name = explode(" ", $inData["search"], 2);
+			// If no partial phone number, ensure it doesn't try to search for phone numbers.
+			if( iconv_strlen(preg_replace("/[^0-9]/", '', $inData["search"])) == 0 )
+			{
+				$searchPhone = "-";
+			}
 			// If there is more than one word (aka a full name)
 			if( count($name) > 1 )
 			{
