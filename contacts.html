@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacts</title>
+
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="css/contacts.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <!-- Logo - links to index.html (images/Icon.png) -->
+    <a href="index.html" class="logo-link">
+      <img id="logo" src="images/Icon.png" alt="Team logo">
+    </a>
+
+    <!-- Search bar -->
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search contacts...">
+  </header>
+
+  <div class="overlay">
+    <div class="card">
+
+      <!-- Header with title -->
+      <div class="header">
+        <h1>Contacts</h1>
+      </div>
+
+      <!-- Contacts table -->
+      <div class="contacts-container">
+        <table class="contacts-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <!-- IMPORTANT: tbody starts EMPTY; JS fills it -->
+          <tbody id="contactsBody"></tbody>
+
+        </table>
+      </div>
+
+      <!-- Add button -->
+      <button class="add-btn" onclick="addContact()">+</button>
+
+    </div>
+  </div>
+
+<script>
+  // ----------------------------
+  // Load contacts from API
+  // ----------------------------
+function loadContacts() {
+  const userId = localStorage.getItem("userId");
+
+  if (!userId) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  fetch("/api/DisplayContact.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId })
+  })
+  .then(async res => {
+    const text = await res.text();
+    console.log("Status:", res.status);
+    console.log("Raw response:", text);
+    return JSON.parse(text);
+  })
+  .then(data => {
+    const tbody = document.getElementById("contactsBody");
+    tbody.innerHTML = "";
+
+    if (data && data.error) {
+      alert(data.error);
+      return;
+    }
+
+    if (!Array.isArray(data)) {
+      console.error("Unexpected response:", data);
+      return;
+    }
+
+    data.forEach(contact => {
+      const row = tbody.insertRow();
+      row.innerHTML = `
+        <td><span>${escapeHtml(contact.FirstName ?? "")}</span></td>
+        <td><span>${escapeHtml(contact.LastName ?? "")}</span></td>
+        <td><span>${escapeHtml(contact.Email ?? "")}</span></td>
+        <td><span>${escapeHtml(contact.Phone ?? "")}</span></td>
+        <td><button class="delete-btn" onclick="deleteContact(this)">×</button></td>
+      `;
+    });
+  })
+  .catch(err => console.error("Error loading contacts:", err));
+}
+
+  // Basic HTML escaping to avoid breaking the table if data has weird chars
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // ----------------------------
+  // Delete contact (FRONTEND ONLY)
+  // ----------------------------
+  function deleteContact(btn) {
+    if (confirm('Are you sure you want to delete this contact?')) {
+      const row = btn.closest('tr');
+      row.remove();
+    }
+  }
+
+ async function addContact() {
+  const userId = localStorage.getItem("userId");
+  if (!userId) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const firstName = prompt("Enter first name:");
+  if (!firstName) return;
+
+  const lastName = prompt("Enter last name:");
+  if (!lastName) return;
+
+  const email = prompt("Enter email:");
+  if (!email) return;
+
+  const phoneNum = prompt("Enter phone number:");
+  if (!phoneNum) return;
+
+  try {
+    const res = await fetch("/api/AddContact.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phoneNum,
+        userId
+      })
+    });
+
+    const text = await res.text();
+    console.log("AddContact status:", res.status);
+    console.log("AddContact raw:", text);
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      alert("AddContact API did not return JSON. Check console.");
+      return;
+    }
+
+    if (data.error && data.error !== "") {
+      alert(data.error);
+      return;
+    }
+
+    // Success: reload from DB so what you see matches backend
+    loadContacts();
+  } catch (err) {
+    console.error("Error adding contact:", err);
+    alert("Failed to add contact. Check console.");
+  }
+}
+
+
+  // ----------------------------
+  // Search functionality
+  // ----------------------------
+  const searchBar = document.getElementById('searchBar');
+  searchBar.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#contactsBody tr');
+
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+  });
+
+  // Load contacts when page opens
+  window.onload = loadContacts;
+</script>
+
+</body>
+</html>
