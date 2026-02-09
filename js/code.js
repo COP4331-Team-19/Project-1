@@ -9,7 +9,10 @@ async function doLogin() {
     
     // Clear any previous error messages
     document.getElementById('loginResult').innerHTML = '';
-    
+
+    // Hash the password using MD5
+    const hashedPassword = md5(loginPassword);
+
     // Create JSON payload - matching your Login.php parameter names
     const jsonPayload = JSON.stringify({
         Login: loginName,
@@ -55,6 +58,9 @@ async function doRegister() {
     // Clear any previous messages
     document.getElementById('registerResult').innerHTML = '';
     
+    // Hash the password using MD5
+    const hashedPassword = md5(password);
+
     // Create JSON payload - matching your Register.php parameter names
     const jsonPayload = JSON.stringify({
         FirstName: firstName,
