@@ -114,6 +114,7 @@ body {
 .contacts-container {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;  
     border: 1px solid rgba(255, 203, 89, 0.9);
     border-radius: 8px;
     background: white;
@@ -151,7 +152,6 @@ body {
 .contacts-table tbody tr:hover {
     transform: scale(1.02);
     background-color: #478fbb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 5;
     position: relative;
 }
@@ -169,8 +169,8 @@ body {
 
 .contacts-table td span {
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 
@@ -302,3 +302,36 @@ body {
     }
 }
 
+/* ===================================
+   INLINE EDITING STYLES
+   =================================== */
+
+/* Input fields that appear during edit/add */
+.inline-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+    border: 2px solid #0288D1;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+/* Save Button (Green) */
+.save-btn {
+    background-color: #28a745 !important; /* Green */
+    color: white;
+}
+.save-btn:hover {
+    background-color: #218838 !important;
+}
+
+/* Confirm Delete State */
+.delete-confirm {
+    background-color: #a71d2a !important; /* Darker Red */
+    width: auto !important; /* Allow expansion for text */
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+}
