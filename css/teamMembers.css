@@ -1,0 +1,213 @@
+/* ===================================
+   CSS VARIABLES
+   =================================== */
+:root {
+    --radius: 5px;
+    --padding: 10px;
+    --primary-brown: #66420b;
+    --hover-brown: #897261;
+    --bg-yellow: #F3B02E;
+    --sidebar-green: rgba(255, 203, 89, 0.9);
+}
+
+
+/* ===================================
+   BODY STYLES
+   =================================== */
+body {
+    background-color: var(--bg-yellow);
+    /* Background image location: images/BackgroundMobile.png */
+    background-image: url('../images/BackgroundMobile.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+/* ===================================
+   TOP HEADER (LOGO & CONTACTS)
+   =================================== */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--sidebar-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo link and image */
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    height: 60px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 50%;
+}
+
+#logo:hover {
+    transform: scale(1.05);
+}
+
+/* Contacts link */
+.contacts-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-brown);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contacts-link:hover {
+    color: var(--hover-brown);
+}
+
+
+/* ===================================
+   MAIN CONTENT LAYOUT
+   =================================== */
+.bodyContainer {
+    padding-top: 80px; /* Space for fixed header */
+}
+
+.main-content {
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    min-height: calc(100vh - 80px);
+}
+
+
+/* ===================================
+   TEAM MEMBERS LIST (LEFT SIDE)
+   =================================== */
+.team-list {
+    width: 300px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.team-list h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-brown);
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.member-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.member-card:hover {
+    transform: translateX(5px);
+}
+
+.member-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.member-name {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-brown);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* ===================================
+   ABOUT US SECTION (RIGHT SIDE)
+   =================================== */
+.about-section {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.about-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-brown);
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+
+/* ===================================
+   MEDIA QUERIES - RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+    body {
+        /* Background image location: images/BackgroundMobile.png */
+        background-image: url('../images/BackgroundMobile.png');
+    }
+}
+
+/* Desktop (769px and up) */
+@media only screen and (min-width: 769px) {
+    body {
+        /* Background image location: images/Background.png */
+        background-image: url('../images/Background.png');
+    }
+}
+
+/* Mobile responsive */
+@media only screen and (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .team-list {
+        width: 100%;
+    }
+    
+    #logo {
+        height: 50px;
+    }
+    
+    .contacts-link {
+        font-size: 18px;
+    }
+}
