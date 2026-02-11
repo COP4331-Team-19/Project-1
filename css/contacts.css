@@ -114,6 +114,7 @@ body {
 .contacts-container {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;  
     border: 1px solid rgba(255, 203, 89, 0.9);
     border-radius: 8px;
     background: white;
@@ -151,7 +152,6 @@ body {
 .contacts-table tbody tr:hover {
     transform: scale(1.02);
     background-color: #478fbb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 5;
     position: relative;
 }
@@ -169,8 +169,8 @@ body {
 
 .contacts-table td span {
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 

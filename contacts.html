@@ -5,140 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contacts</title>
 
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="css/contacts.css" />
 
-    /* This uses the background image we verified on your server */
-    body {
-      background: url("images/Background.png") no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    /* Centers our content card */
-    .overlay {
-      min-height: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 40px 16px;
-    }
-
-    /* Main white card box */
-    .card {
-      width: min(900px, 96vw);
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
-    }
-
-    /* Green styled button */
-    .btn {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 0;
-      cursor: pointer;
-      background: #0a7a0a;
-      color: white;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .muted {
-      opacity: 0.85;
-    }
-
-    /* Normal page content styling */
-    .contact-info {
-      margin-top: 20px;
-    }
-
-    .contact-info h2 {
-      color: #0a7a0a;
-      margin-bottom: 10px;
-    }
-
-    .contact-info p {
-      line-height: 1.6;
-      margin: 8px 0;
-    }
-  </style>
-</head>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <!-- Link to external JavaScript file -->
+  <script type="text/javascript" src="js/code.js?v=11"></script>
+  
+  <!-- Initialize contacts page - MUST BE AFTER code.js
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      loadContacts();
+      initializeContactsSearch();
+    }, false);
+  </script>
+</head> -->
 
 <body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <!-- Logo - links to index.html (images/Icon.png) -->
+    <a href="index.html" class="logo-link">
+      <img id="logo" src="images/Icon.png" alt="Team logo">
+    </a>
+
+    <!-- Search bar -->
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search contacts...">
+  </header>
 
   <div class="overlay">
     <div class="card">
 
-      <h1>Contacts</h1>
-
-      <!-- NORMAL PAGE CONTENT (ALWAYS VISIBLE) -->
-      <div class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>Welcome to our contacts page! Here you can find information about reaching our team.</p>
-        <p><strong>Email:</strong> contact@example.com</p>
-        <p><strong>Phone:</strong> (555) 123-4567</p>
-        <p><strong>Address:</strong> 123 Main Street, City, State 12345</p>
+      <!-- Header with title -->
+      <div class="header">
+        <h1>Contacts</h1>
       </div>
 
-      <!-- COMMENTED OUT: Login-based UI sections -->
-      <!-- Shown when user is NOT logged in -->
-      <!--
-      <div id="loggedOutUI" style="display:none;">
-        <p class="muted">You must be logged in to view contacts.</p>
-        <a class="btn" href="frontend/login.html">Go to Login</a>
-      </div>
-      -->
+      <!-- Contacts table -->
+      <div class="contacts-container">
+        <table class="contacts-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th></th>
+            </tr>
+          </thead>
 
-      <!-- Shown when user IS logged in -->
-      <!--
-      <div id="loggedInUI" style="display:none;">
-        <p class="muted">You are logged in.</p>
-        <button class="btn" id="logoutBtn" style="background:#444;">
-          Logout
-        </button>
+          <!-- IMPORTANT: tbody starts EMPTY; JS fills it -->
+          <tbody id="contactsBody"></tbody>
+
+        </table>
       </div>
-      -->
+
+      <!-- Add button -->
+      <button class="add-btn" onclick="addContact()">+</button>
 
     </div>
   </div>
-
-<!-- COMMENTED OUT: All login/logout logic -->
-<!--
-<script>
-
-  // Check if a user is logged in by seeing if userId is stored
-  const userId = localStorage.getItem("userId");
-
-  // COMMENTED OUT: Redirect to index.html if not logged in
-  // If NOT logged in, immediately return to home page
-  // if (!userId) {
-  //   window.location.href = "index.html";
-  // }
-
-  // If we get here, user IS logged in
-  const loggedInUI  = document.getElementById("loggedInUI");
-  loggedInUI.style.display = "";
-
-  // Logout button logic
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("userId");
-      localStorage.removeItem("firstName");
-      localStorage.removeItem("lastName");
-
-      window.location.href = "index.html";
-    });
-  }
-
-</script>
--->
 
 </body>
 </html>
