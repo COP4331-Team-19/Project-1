@@ -91,17 +91,6 @@ async function doRegister() {
     }
 }
 
-// LOGOUT FUNCTION
-function doLogout() {
-    // Clear all user data from localStorage
-    localStorage.removeItem('userId');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-
-    // Redirect to login page
-    window.location.href = 'index.html';
-}
-
 // CONTACTS PAGE FUNCTIONS
 function loadContacts() {
     console.log("loadContacts function called");
@@ -140,17 +129,17 @@ function loadContacts() {
 
         data.forEach(function(contact) {
             const row = tbody.insertRow();
-            row.innerHTML = `
-                <td><span>${escapeHtml(contact.FirstName ?? "")}</span></td>
-                <td><span>${escapeHtml(contact.LastName ?? "")}</span></td>
-                <td><span>${escapeHtml(contact.Email ?? "")}</span></td>
-                <td><span>${escapeHtml(contact.Phone ?? "")}</span></td>
-                <td>
-                  <button class="edit-btn" onclick="editContact(this)">✎</button>
-                  <button class="delete-btn" onclick="deleteContact(this)">×</button>
-                </td>
-            `;
-        });
+	    row.innerHTML = `
+  		<td><span>${escapeHtml(contact.FirstName ?? "")}</span></td>
+ 		<td><span>${escapeHtml(contact.LastName ?? "")}</span></td>
+ 		<td><span>${escapeHtml(contact.Email ?? "")}</span></td>
+ 		<td><span>${escapeHtml(contact.Phone ?? "")}</span></td>
+ 		<td>
+  		  <button class="edit-btn" onclick="editContact(this)">✎</button>
+   		  <button class="delete-btn" onclick="deleteContact(this)">×</button>
+ 	        </td>
+	    `;	
+	});
     })
     .catch(function(err) {
         console.error("Error loading contacts:", err);
@@ -172,16 +161,16 @@ function deleteContact(btn) {
         // 2nd Click: Actually Delete
         const row = btn.closest('tr');
         row.remove();
-
+        
         // TODO: Call your Delete API here
         // const contactId = ...
         // deleteContactAPI(contactId);
-
+        
     } else {
         // 1st Click: Change to "Confirm?" state
         btn.classList.add('delete-confirm');
         btn.innerHTML = "✓"; // Change text to ask for confirmation
-
+        
         // Optional: Auto-revert if they don't click within 3 seconds
         setTimeout(() => {
             if (btn && document.body.contains(btn)) {
@@ -194,7 +183,7 @@ function deleteContact(btn) {
 
 function addContact() {
     const tbody = document.getElementById('contactsBody');
-
+    
     // Insert a new row at the top of the table
     const row = tbody.insertRow(0);
     row.classList.add('editing-mode'); // Mark as being edited immediately
@@ -216,7 +205,7 @@ function addContact() {
 async function saveNewContact(btn) {
     const row = btn.closest('tr');
     const inputs = row.querySelectorAll('input');
-
+    
     const firstName = inputs[0].value.trim();
     const lastName  = inputs[1].value.trim();
     const email     = inputs[2].value.trim();
@@ -238,14 +227,14 @@ async function saveNewContact(btn) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ firstName, lastName, email, phoneNum, userId })
         });
-
+        
         // If successful, convert the row to standard "View" mode
         const cells = row.getElementsByTagName('td');
         cells[0].innerHTML = `<span>${escapeHtml(firstName)}</span>`;
         cells[1].innerHTML = `<span>${escapeHtml(lastName)}</span>`;
         cells[2].innerHTML = `<span>${escapeHtml(email)}</span>`;
         cells[3].innerHTML = `<span>${escapeHtml(phoneNum)}</span>`;
-
+        
         // Switch button to normal Edit handler
         btn.innerHTML = "✎";
         btn.classList.remove('save-btn');
@@ -274,7 +263,6 @@ function initializeContactsSearch() {
 }
 
 // EDIT CONTACT FUNCTION
-// EDIT CONTACT FUNCTION
 function editContact(btn) {
     const row = btn.closest('tr');
     const cells = row.getElementsByTagName('td');
@@ -282,22 +270,27 @@ function editContact(btn) {
 
     if (isEditing) {
         // --- SAVE ACTION ---
+        // 1. Get values from the input fields
         const newFirst = cells[0].querySelector('input').value.trim();
         const newLast  = cells[1].querySelector('input').value.trim();
         const newEmail = cells[2].querySelector('input').value.trim();
         const newPhone = cells[3].querySelector('input').value.trim();
 
+        // 2. Simple Validation (ensure not empty)
         if (!newFirst || !newLast || !newEmail || !newPhone) {
+            // Instead of alert, we can highlight empty borders red
             if(!newFirst) cells[0].querySelector('input').style.borderColor = "red";
-            return;
+            return; 
         }
 
+        // 3. Update the UI (Convert inputs back to spans)
         cells[0].innerHTML = `<span>${escapeHtml(newFirst)}</span>`;
         cells[1].innerHTML = `<span>${escapeHtml(newLast)}</span>`;
         cells[2].innerHTML = `<span>${escapeHtml(newEmail)}</span>`;
         cells[3].innerHTML = `<span>${escapeHtml(newPhone)}</span>`;
 
-        btn.innerHTML = "✎";
+        // 4. Reset Button to Edit Mode
+        btn.innerHTML = "✎"; // Pencil icon
         btn.classList.remove('save-btn');
         row.classList.remove('editing-mode');
 
@@ -306,31 +299,23 @@ function editContact(btn) {
 
     } else {
         // --- EDIT ACTION ---
+        // 1. Get current text values
         const currentFirst = cells[0].innerText;
         const currentLast  = cells[1].innerText;
         const currentEmail = cells[2].innerText;
         const currentPhone = cells[3].innerText;
 
+        // 2. Replace spans with Input fields
         cells[0].innerHTML = `<input type="text" class="inline-input" value="${currentFirst}" placeholder="First Name">`;
         cells[1].innerHTML = `<input type="text" class="inline-input" value="${currentLast}" placeholder="Last Name">`;
         cells[2].innerHTML = `<input type="email" class="inline-input" value="${currentEmail}" placeholder="Email">`;
         cells[3].innerHTML = `<input type="tel" class="inline-input" value="${currentPhone}" placeholder="Phone">`;
 
-        btn.innerHTML = "💾";
+        // 3. Change Button to Save Mode
+        btn.innerHTML = "💾"; // Floppy Disk icon
         btn.classList.add('save-btn');
         row.classList.add('editing-mode');
     }
 }
-
-// INITIALIZE CONTACTS PAGE WHEN DOM LOADS
-// ADD THIS SECTION - IT'S MISSING FROM YOUR FILE
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if we're on the contacts page by looking for the contactsBody element
-    if (document.getElementById('contactsBody')) {
-        console.log("Contacts page detected - initializing...");
-        loadContacts();
-        initializeContactsSearch();
-    }
-}, false);
 
 console.log("code.js loaded - functions defined");
