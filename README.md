@@ -3,7 +3,7 @@ Pirate Cove is a robust, cloud-hosted Personal Contact Manager designed to showc
 
 Our team prioritized a clean, user-centric experience, starting with a landing page that facilitates immediate login or registration. We implemented secure authentication to ensure that each user maintains a private, non-shared repository of contacts. Once authenticated, users enjoy a smooth, Single-Page Application feel featuring real-time server-side search and intuitive inline CRUD (Create, Read, Update, Delete) functionality to manage their data. From initial UML and database planning to GitHub version control and final deployment, this project reflects our comprehensive approach to delivering a polished, production-ready web application.
 
-Developed by Raymond Warrenfeltz, Julianne Lobo, Nicholas Calicchio Glenn Garcia, and Julian Poston for UCF COP4331 Processes for Object Oriented Software Development Spring 2026. 
+Developed by Raymond Warrenfeltz, Julianne Lobo, Nicholas Calicchio, Glenn Garcia, and Julian Poston for UCF COP4331 Processes for Object Oriented Software Development Spring 2026. 
 
 ### API Documentation:
 Add Contact:
