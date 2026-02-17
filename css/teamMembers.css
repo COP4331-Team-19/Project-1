@@ -1,6 +1,4 @@
-/* ===================================
-   CSS VARIABLES
-   =================================== */
+/* frequently used variables */
 :root {
     --radius: 5px;
     --padding: 10px;
@@ -11,9 +9,7 @@
 }
 
 
-/* ===================================
-   BODY STYLES
-   =================================== */
+/* body styling */
 body {
     background-color: var(--bg-yellow);
     /* Background image location: images/BackgroundMobile.png */
@@ -26,10 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-
-/* ===================================
-   TOP HEADER (LOGO & CONTACTS)
-   =================================== */
+/* top header with logo and contacts link */
 .top-header {
     position: fixed;
     top: 0;
@@ -45,12 +38,13 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo link and image */
+/* logo link and image */
 .logo-link {
     display: flex;
     align-items: center;
 }
 
+/* logo size and shape */
 #logo {
     height: 60px;
     width: auto;
@@ -59,11 +53,12 @@ body {
     border-radius: 50%;
 }
 
+/* hover function */
 #logo:hover {
     transform: scale(1.05);
 }
 
-/* Contacts link */
+/* login link */
 .contacts-link {
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
@@ -72,15 +67,12 @@ body {
     text-decoration: none;
     transition: color 0.2s;
 }
-
+/* login link hover function */
 .contacts-link:hover {
     color: var(--hover-brown);
 }
 
-
-/* ===================================
-   MAIN CONTENT LAYOUT
-   =================================== */
+/* main container */
 .bodyContainer {
     padding-top: 80px; /* Space for fixed header */
 }
@@ -92,10 +84,7 @@ body {
     min-height: calc(100vh - 80px);
 }
 
-
-/* ===================================
-   TEAM MEMBERS LIST (LEFT SIDE)
-   =================================== */
+/* team members list on left side */
 .team-list {
     width: 300px;
     flex-shrink: 0;
@@ -104,6 +93,7 @@ body {
     padding: 20px;
 }
 
+/* Team members text  */
 .team-list h2 {
     font-family: 'Montserrat', sans-serif;
     color: var(--primary-brown);
@@ -113,6 +103,7 @@ body {
     text-align: center;
 }
 
+/* individual member card */
 .member-card {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -123,10 +114,12 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* hover function over each member */
 .member-card:hover {
     transform: translateX(5px);
 }
 
+/* implementation of image  */
 .member-card img {
     width: 80px;
     height: 80px;
@@ -135,6 +128,7 @@ body {
     object-fit: cover;
 }
 
+/* addition of member name */
 .member-name {
     font-family: 'Montserrat', sans-serif;
     color: var(--primary-brown);
@@ -143,10 +137,7 @@ body {
     margin: 0;
 }
 
-
-/* ===================================
-   ABOUT US SECTION (RIGHT SIDE)
-   =================================== */
+/* about us section white background */
 .about-section {
     flex: 1;
     background: rgba(255, 255, 255, 0.9);
@@ -155,6 +146,7 @@ body {
     overflow-y: auto;
 }
 
+/* About us text */
 .about-section h1 {
     font-family: 'Montserrat', sans-serif;
     color: var(--primary-brown);
@@ -163,6 +155,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* extra text color */
 .about-section p {
     font-family: 'Montserrat', sans-serif;
     color: #333;
@@ -171,10 +164,6 @@ body {
     margin-bottom: 15px;
 }
 
-
-/* ===================================
-   MEDIA QUERIES - RESPONSIVE DESIGN
-   =================================== */
 
 /* Tablets (768px and up) */
 @media only screen and (min-width: 768px) {

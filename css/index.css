@@ -1,6 +1,4 @@
-/* ===================================
-   CSS VARIABLES
-   =================================== */
+/* general variables used  */
 :root {
     --radius: 5px;
     --padding: 10px;
@@ -11,12 +9,9 @@
 }
 
 
-/* ===================================
-   BODY STYLES
-   =================================== */
+/* styling for body */
 body {
     background-color: var(--bg-yellow);
-    /* Background image location: images/BackgroundMobile.png */
     background-image: url('../images/BackgroundMobile.png');
     background-position: center center;
     background-repeat: no-repeat;
@@ -27,9 +22,7 @@ body {
 }
 
 
-/* ===================================
-   TOP HEADER (LOGO & ABOUT US)
-   =================================== */
+/* styling for the logo and headers */
 .top-header {
     position: fixed;
     top: 0;
@@ -45,12 +38,13 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo link and image */
+/* logo link and image */
 .logo-link {
     display: flex;
     align-items: center;
 }
 
+/* shape snd position of logo */
 #logo {
     height: 60px;
     width: auto;
@@ -59,11 +53,12 @@ body {
     border-radius: 50%;
 }
 
+/* hover function */
 #logo:hover {
     transform: scale(1.05);
 }
 
-/* About Us link */
+/* about us link */
 .about-link {
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
@@ -73,16 +68,14 @@ body {
     transition: color 0.2s;
 }
 
+/* hover function */
 .about-link:hover {
     color: var(--hover-brown);
 }
 
-
-/* ===================================
-   MAIN CONTENT LAYOUT
-   =================================== */
+/* main content */
 .bodyContainer {
-    padding-top: 80px; /* Space for fixed header */
+    padding-top: 80px; /* space for fixed header */
 }
 
 .main-content {
@@ -93,10 +86,7 @@ body {
     min-height: calc(100vh - 80px);
 }
 
-
-/* ===================================
-   PAGE TITLE (CONTAINS GITHUB LINK)
-   =================================== */
+/* home page title thatll contain github link */
 .page-title {
     margin: 0 0 30px 0;
     text-align: center;
@@ -106,6 +96,7 @@ body {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
+/* styling for repo link */
 .title-link {
     font-family: 'Montserrat', sans-serif;
     font-size: 52px;
@@ -116,6 +107,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* hover function for link */
 .title-link:hover {
     color: var(--hover-brown);
 }

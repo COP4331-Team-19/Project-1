@@ -1,6 +1,4 @@
-/* ===================================
-   BODY STYLES
-   =================================== */
+/* setting up styling for body of website */
 body {
     background-color: #F3B02E;
     background-image: url('../images/Background.png');
@@ -14,10 +12,8 @@ body {
 }
 
 
-/* ===================================
-   TOP HEADER (LOGO & SEARCH)
-   =================================== */
-.top-header {
+/* top yellow header displayed for styling */
+   .top-header {
     position: fixed;
     top: 0;
     left: 0;
@@ -25,19 +21,22 @@ body {
     height: 80px;
     background: rgba(255, 203, 89, 0.9);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Changed from space-between */
     align-items: center;
     padding: 0 30px;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 20px;
 }
 
-/* Logo link and image */
+/* logo link and image */
 .logo-link {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
+/* logo setup with shape */
 #logo {
     height: 60px;
     width: auto;
@@ -45,12 +44,35 @@ body {
     transition: transform 0.2s;
     border-radius: 50%;
 }
-
+/* hover function */
 #logo:hover {
     transform: scale(1.05);
 }
 
-/* Search bar in header */
+/* logout butten generally the same as logo button */
+.logout-btn {
+    padding: 10px 20px;
+    background: #78500b;
+    color: rgba(234, 207, 155, 0.9);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* same as logo hover function but with color change */
+.logout-btn:hover {
+    background: #66420b;
+    transform: scale(1.05);
+}
+
+/* search bar in header */
 .search-bar {
     padding: 10px 15px;
     border: 2px solid #66420b;
@@ -60,47 +82,48 @@ body {
     outline: none;
     font-family: 'Montserrat', sans-serif;
     background: white;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
+/* given border to search for easier viewing */
 .search-bar:focus {
     border-color: #897261;
 }
 
-
-/* ===================================
-   MAIN CONTENT LAYOUT
-   =================================== */
+/* main layout */
 .overlay {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 120px 16px 40px 16px; /* Extra top padding for fixed header */
+    padding: 120px 16px 40px 16px; /* additional length */
 }
 
-/* Main contacts card */
+/* main contacts card customizability */
 .card {
     width: min(900px, 96vw);
     max-height: 80vh; /* Maximum height */
     background: rgba(255, 255, 255, 0.95);
     border-radius: 14px;
     padding: 30px;
-    padding-bottom: 100px; /* Extra padding at bottom for add button */
+    padding-bottom: 100px; /* extra padding at bottom for add button */
     box-shadow: 0 12px 35px rgba(0,0,0,0.35);
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-/* Card header */
+/* header for the card  */
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    flex-shrink: 0; /* Prevents header from shrinking */
+    flex-shrink: 0; /* prevents header from shrinking */
 }
 
+/* font and color of header */
 .header h1 {
     margin: 0;
     color: #66420b;
@@ -108,26 +131,26 @@ body {
 }
 
 
-/* ===================================
-   CONTACTS TABLE
-   =================================== */
+/* actul contacts table */
 .contacts-container {
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;  
+    overflow-x: hidden;
     border: 1px solid rgba(255, 203, 89, 0.9);
     border-radius: 8px;
     background: white;
-    min-height: 0; /* Allows container to shrink */
-    margin-bottom: 20px; /* Space between table and add button */
+    min-height: 0; /* allows container to shrink */
+    margin-bottom: 20px; /* space between table and add button */
 }
 
+/* styling of table with collapsable border */
 .contacts-table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
 }
 
+/* header with gold background */
 .contacts-table thead {
     background: rgba(255, 203, 89, 0.9);
     position: sticky;
@@ -135,6 +158,7 @@ body {
     z-index: 10;
 }
 
+/* styling for header  */
 .contacts-table th {
     padding: 20px 15px;
     text-align: left;
@@ -145,10 +169,12 @@ body {
     text-transform: uppercase;
 }
 
+/* transition for table rows */
 .contacts-table tbody tr {
     transition: all 0.2s ease;
 }
 
+/* contact hover function */
 .contacts-table tbody tr:hover {
     transform: scale(1.02);
     background-color: #478fbb;
@@ -156,6 +182,7 @@ body {
     position: relative;
 }
 
+/* actual table data styling */
 .contacts-table td {
     padding: 15px;
     text-align: left;
@@ -167,6 +194,7 @@ body {
     border-bottom: 1px solid rgba(255, 203, 89, 0.5);
 }
 
+/* word wrapping for long text in each cell */
 .contacts-table td span {
     display: block;
     word-wrap: break-word;
@@ -174,9 +202,7 @@ body {
 }
 
 
-/* ===================================
-   DELETE BUTTON
-   =================================== */
+/* delete button */
 .delete-btn {
     background: #d32f2f;
     color: white;
@@ -190,14 +216,12 @@ body {
     transition: background 0.2s;
 }
 
+/* hover function that changes color slightly */
 .delete-btn:hover {
     background: #b71c1c;
 }
 
-
-/* ===================================
-   ADD BUTTON (BOTTOM - OUTSIDE TABLE)
-   =================================== */
+/* add contact button */
 .add-btn {
     position: absolute;
     bottom: 30px;
@@ -220,15 +244,14 @@ body {
     z-index: 100; /* Ensures button stays on top */
 }
 
+/* hovering function for button */
 .add-btn:hover {
     background: #66420b;
     transform: scale(1.1);
 }
 
 
-/* ===================================
-   CUSTOM SCROLLBAR
-   =================================== */
+/* scroll bar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -242,9 +265,7 @@ body {
 }
 
 
-/* ===================================
-   RESPONSIVE DESIGN
-   =================================== */
+/* mobile user design */
 @media screen and (max-width: 768px) {
     body {
         background-image: url('../images/BackgroundMobile.png');
@@ -271,7 +292,7 @@ body {
         font-size: 14px;
     }
 
-    /* Disable scale effect on mobile for better touch experience */
+    /* disable scale effect on mobile for better touch experience */
     .contacts-table tbody tr:hover {
         transform: none;
     }
@@ -302,11 +323,7 @@ body {
     }
 }
 
-/* ===================================
-   INLINE EDITING STYLES
-   =================================== */
-
-/* Input fields that appear during edit/add */
+/* input fields that appear during edit/add */
 .inline-input {
     width: 100%;
     padding: 8px;
