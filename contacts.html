@@ -12,39 +12,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <!-- Link to external JavaScript file -->
-  <script type="text/javascript" src="js/code.js?v=11"></script>
-  
-  <!-- Initialize contacts page - MUST BE AFTER code.js
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-      loadContacts();
-      initializeContactsSearch();
-    }, false);
-  </script>
-</head> -->
+  <script type="text/javascript" src="js/code.js?v=2"></script>
+</head>
 
 <body>
-
-  <!-- TOP HEADER -->
   <header class="top-header">
-    <!-- Logo - links to index.html (images/Icon.png) -->
-    <a href="index.html" class="logo-link">
-      <img id="logo" src="images/Icon.png" alt="Team logo">
-    </a>
+    <!-- logo links to index.html (images/Icon.png) -->
+    <img id="logo" src="images/Icon.png" alt="Team logo" class="logo-link" onclick="doLogout()">
 
-    <!-- Search bar -->
+
+    <!-- logout -->
+    <button class="logout-btn" onclick="doLogout()">Logout</button>
+
+    <!-- search bar -->
     <input type="text" class="search-bar" id="searchBar" placeholder="Search contacts...">
   </header>
+
 
   <div class="overlay">
     <div class="card">
 
-      <!-- Header with title -->
+      <!-- header of contact box -->
       <div class="header">
         <h1>Contacts</h1>
       </div>
 
-      <!-- Contacts table -->
+      <!-- actual contact table -->
       <div class="contacts-container">
         <table class="contacts-table">
           <thead>
@@ -57,13 +50,13 @@
             </tr>
           </thead>
 
-          <!-- IMPORTANT: tbody starts EMPTY; JS fills it -->
+          <!-- starts empty and will be filled by js -->
           <tbody id="contactsBody"></tbody>
 
         </table>
       </div>
 
-      <!-- Add button -->
+      <!-- add contact button -->
       <button class="add-btn" onclick="addContact()">+</button>
 
     </div>
